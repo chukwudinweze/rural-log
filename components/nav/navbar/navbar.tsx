@@ -1,16 +1,16 @@
 import { Menu, UserCircle2 } from "lucide-react";
 
 import Logo from "@/components/logo";
-import SearchBar from "./components/SearchBar";
 import Cart from "./components/cart";
 import FAQ from "./components/faq";
 import LowerNav from "./components/lowerNav";
+import SearchBar from "./components/searchBar";
 
 const Navbar = () => {
   return (
-    <nav className="py-5 border border-red-600">
+    <nav className="pt-8">
       {/* top navigation */}
-      <div className="flex justify-between items-center gap-1 md:gap-3 px-5 md:px-10 ">
+      <div className="flex justify-between items-center gap-1 md:gap-3 pb-4 mx-5 md:mx-10 ">
         <Menu size={25} className="md:hidden" />
         <Logo />
         <SearchBar />

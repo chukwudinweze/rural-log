@@ -1,8 +1,13 @@
+import Navbar from "@/components/nav/navbar/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
+import SideBar from "@/components/nav/sidebar/sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Rural Log",
@@ -16,7 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={roboto.className}>
+        <Navbar />
+        <main className="flex">
+          <SideBar />
+          <div className="flex-1 px-4"> {children}</div>
+        </main>
+      </body>
     </html>
   );
 }

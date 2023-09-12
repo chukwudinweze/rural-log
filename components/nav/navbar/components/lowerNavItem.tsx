@@ -5,11 +5,25 @@ interface LowerNavItem {
   label: string;
   href: string;
   active: boolean;
+  flex?: string;
 }
-const LowerNavItem: React.FC<LowerNavItem> = ({ active, href, label }) => {
+const LowerNavItem: React.FC<LowerNavItem> = ({
+  active,
+  href,
+  label,
+  flex,
+}) => {
   return (
-    <li className="text-red-500 hidden">
-      <Link href={href} className="text-red-500 hidden">
+    <li
+      className={cn(
+        " px-1 transition hover:text-white hover:border-redBrand hover:border-b-2 duration-300 py-1",
+        flex && "text-yellow-50 border-b-2 border-redBrand "
+      )}
+    >
+      <Link
+        href={href}
+        className={cn("font-bold text-sm md:text-base text-white")}
+      >
         {label}
       </Link>
     </li>

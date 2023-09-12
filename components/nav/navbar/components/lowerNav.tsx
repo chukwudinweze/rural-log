@@ -4,7 +4,8 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import React from "react";
-import LowerNavItem from "./LowerNavItem";
+import LowerNavItem from "./lowerNavItem";
+import SocialMedia from "./socialMedia";
 
 const LowerNav = () => {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ const LowerNav = () => {
         label: "Home",
         href: "/",
         active: pathname === "/",
+        flex: "flex-1",
       },
       {
         label: "Products",
@@ -25,11 +27,7 @@ const LowerNav = () => {
         href: "/about",
         active: pathname === "/products",
       },
-      {
-        label: "Blog",
-        href: "/blog",
-        active: pathname === "/blog",
-      },
+
       {
         label: "Contact us",
         href: "/contact-us",
@@ -39,16 +37,20 @@ const LowerNav = () => {
     [pathname]
   );
   return (
-    <ul>
-      {routes.map((route) => (
-        <LowerNavItem
-          key={route.label}
-          label={route.label}
-          href={route.href}
-          active={route.active}
-        />
-      ))}
-    </ul>
+    <div className="flex justify-center items-center w-full md:px-20 md:gap-60 bg-green-700 ">
+      <ul className="flex items-center justify-between md:gap-8 pb-1">
+        {routes.map((route) => (
+          <LowerNavItem
+            key={route.label}
+            label={route.label}
+            href={route.href}
+            active={route.active}
+            flex={route.flex}
+          />
+        ))}
+      </ul>
+      <SocialMedia />
+    </div>
   );
 };
 
