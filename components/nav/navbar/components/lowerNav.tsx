@@ -33,6 +33,12 @@ const LowerNav = () => {
         href: "/contact-us",
         active: pathname === "/contact-us",
       },
+
+      {
+        label: "Become an agent",
+        href: "/agent-signup",
+        active: pathname === "/agent-signup",
+      },
     ],
     [pathname]
   );
