@@ -1,32 +1,41 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface SidenavLinkItemProps {
   label: string;
-  href: string;
+  category: string;
   active: boolean;
   icon: any;
 }
 const SidenavLinkItem: React.FC<SidenavLinkItemProps> = ({
   label,
-  href,
+  category,
   active,
   icon: Icon,
 }) => {
+  const router = useRouter();
+
+  const handleCategoryNav = () => {
+    router.push(`/categories/${category}`);
+  };
   return (
     <li
+      onClick={handleCategoryNav}
       className={cn(
-        "group px-2 py-3 rounded-md hover:bg-redBrand",
+        "group px-2 py-3 rounded-md hover:bg-redBrand cursor-pointer",
         active && "bg-redBrand"
       )}
     >
-      <Link
-        href={href}
-        className="flex items-center justify-start gap-3 font-bold text-gray-600 group-hover:text-white text-sm"
+      <p
+        className={cn(
+          "flex items-center justify-start gap-3 font-bold text-gray-600 group-hover:text-white text-sm",
+          active && "text-white"
+        )}
       >
         <Icon />
         {label}
-      </Link>
+      </p>
     </li>
   );
 };
