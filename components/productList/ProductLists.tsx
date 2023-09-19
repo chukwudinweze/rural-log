@@ -27,9 +27,9 @@ interface ProductListProps {
 }
 const ProductLists: React.FC<ProductListProps> = ({ heading }) => {
   return (
-    <section className="p-6 pt-8">
+    <section className="p-0 md:p-6 pt-8">
       <h1 className="text-lg font-semibold pb-5">{heading}</h1>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <ProductItem
             key={product.id}

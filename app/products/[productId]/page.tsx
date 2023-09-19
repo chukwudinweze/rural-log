@@ -1,17 +1,64 @@
+"use client";
+
 import ProductLists, { products } from "@/components/productList/ProductLists";
+import { addToCart } from "@/store/cart";
+import { useAppDispatch } from "@/store/hooks";
+import { getProductCheckout } from "@/store/productCheckout";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
 
 interface Iparams {
   productId: string;
 }
-const ProductId = async ({ params }: { params: Iparams }) => {
+
+const ProductId = ({ params }: { params: Iparams }) => {
+  const [productAmt, setProductAmt] = useState(1);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const productItem = products.find(
     (product) => product.id.toLocaleString() === params.productId
   );
+
+  const handleAddToCart = useCallback(() => {
+    console.log("oleee");
+
+    if (productItem) {
+      const { id, name, image, price } = productItem;
+      const productToAdd = {
+        productId: id.toLocaleString(),
+        productName: name,
+        productImg: image,
+        amount: productAmt,
+        price: price,
+      };
+      dispatch(addToCart(productToAdd));
+    }
+  }, [dispatch, productAmt, productItem]);
+
+  const handleCheckout = useCallback(() => {
+    console.log("r44445");
+    if (productItem) {
+      const { id, name, image, price } = productItem;
+      const productToAdd = {
+        productId: id.toLocaleString(),
+        productName: name,
+        productImg: image,
+        amount: productAmt,
+        price: price,
+      };
+      dispatch(getProductCheckout({ products: [productToAdd] }));
+      router.push("/checkout");
+    }
+  }, [dispatch, productAmt, productItem, router]);
+
   if (!productItem) {
-    return;
+    return <p>Error</p>;
   }
-  const { id, name, image, price } = productItem;
+
+  const { name, image, price } = productItem;
+
   return (
     <>
       <div className="bg-white rounded-lg shadow-sm p-4 ml-5 flex flex-col lg:flex-row pt-20">
@@ -26,10 +73,16 @@ const ProductId = async ({ params }: { params: Iparams }) => {
             className="rounded-lg"
           />
           <div className="mt-4 flex justify-center gap-10">
-            <button className="bg-redBrand text-white text-sm font-semibold py-2 px-2 rounded mr-2">
+            <button
+              className="bg-redBrand text-white text-sm font-semibold py-2 px-2 rounded mr-2"
+              onClick={handleAddToCart}
+            >
               Add to Cart
             </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-2 rounded">
+            <button
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-2 rounded"
+              onClick={handleCheckout}
+            >
               Buy Now
             </button>
           </div>
@@ -43,7 +96,7 @@ const ProductId = async ({ params }: { params: Iparams }) => {
             est eu magna hendrerit bibendum.
           </p>
           <div className="mb-4">
-            <span className="text-gray-600">Price:</span> ${price}
+            <span className="text-gray-600">Price:</span> ₦ {price}
           </div>
           <div className="mb-4">
             <span className="text-gray-600">Availability:</span> In stock
@@ -54,9 +107,11 @@ const ProductId = async ({ params }: { params: Iparams }) => {
             </label>
             <input
               type="number"
+              min={1}
               id="quantity"
               className="w-16 border border-gray-300 rounded-md px-2 py-1 ml-2"
-              defaultValue="1"
+              value={productAmt}
+              onChange={(e) => setProductAmt(parseInt(e.target.value, 10))}
             />
           </div>
         </div>
