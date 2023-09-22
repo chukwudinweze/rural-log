@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { getProductCheckout } from "@/store/productCheckout";
 import { clearCart } from "@/store/cart";
+import toast from "react-hot-toast";
+import EmptyCart from "./components/emptyCart";
 
 const Cart = () => {
   const products = useAppSelector((state) => state.cart.products);
@@ -14,7 +16,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   if (products.length < 1) {
-    return <p>No products to show</p>;
+    return <EmptyCart />;
   }
 
   const handleCheckout = () => {
@@ -27,6 +29,8 @@ const Cart = () => {
 
   const handleClearCat = () => {
     dispatch(clearCart());
+
+    toast.success("Cart Cleared");
   };
   return (
     <div className="w-full md:w-[80%] mx-auto bg-gray-50 p-4 my-4 rounded-md">

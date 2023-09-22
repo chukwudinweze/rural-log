@@ -25,7 +25,7 @@ const LowerNav = () => {
       {
         label: "About",
         href: "/about",
-        active: pathname === "/products",
+        active: pathname === "/about",
       },
 
       {
@@ -35,9 +35,10 @@ const LowerNav = () => {
       },
 
       {
-        label: "Become an agent",
-        href: "/agent-signup",
-        active: pathname === "/agent-signup",
+        label: "Become our Farmer",
+        href: "#",
+        active: false,
+        triggerDialog: true,
       },
     ],
     [pathname]
@@ -52,6 +53,7 @@ const LowerNav = () => {
             href={route.href}
             active={route.active}
             flex={route.flex}
+            triggerDialog={route.triggerDialog}
           />
         ))}
       </ul>

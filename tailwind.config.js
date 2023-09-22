@@ -19,6 +19,7 @@ module.exports = {
       colors: {
         greenBrand: "#6bba62",
         redBrand: "#fe7847",
+        footerColor: "#0e2207",
         slideoverlay: "#00000080",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

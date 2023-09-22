@@ -1,17 +1,17 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import clsx from "clsx";
 import { FieldValues, FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
   id: string;
-  label: string;
+  label?: string;
   type?: string;
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   disabled?: boolean;
+  isFormLoadError?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,17 +22,21 @@ const Input: React.FC<InputProps> = ({
   required,
   type,
   id,
+  isFormLoadError,
 }) => {
   return (
     <div className="mt-4">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium leading-6 text-green-700"
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={id}
+          className="block text-sm font-medium leading-6 text-green-700"
+        >
+          {label}
+        </label>
+      )}
       <div className="mt-1">
         <input
+          aria-autocomplete="inline"
           id={id}
           type={type}
           autoComplete={id}
@@ -45,6 +49,18 @@ const Input: React.FC<InputProps> = ({
           {...register(id, { required })}
           disabled={disabled}
         />
+        <p>
+          {errors[id] && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors[id]?.message?.toString()}
+            </p>
+          )}
+          {isFormLoadError && (
+            <div className="text-red-500 text-xs mt-1">
+              Error loading First Name
+            </div>
+          )}
+        </p>
       </div>
     </div>
   );

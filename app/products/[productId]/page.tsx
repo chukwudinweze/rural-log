@@ -7,6 +7,7 @@ import { getProductCheckout } from "@/store/productCheckout";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
+import toast from "react-hot-toast";
 
 interface Iparams {
   productId: string;
@@ -22,8 +23,6 @@ const ProductId = ({ params }: { params: Iparams }) => {
   );
 
   const handleAddToCart = useCallback(() => {
-    console.log("oleee");
-
     if (productItem) {
       const { id, name, image, price } = productItem;
       const productToAdd = {
@@ -34,11 +33,11 @@ const ProductId = ({ params }: { params: Iparams }) => {
         price: price,
       };
       dispatch(addToCart(productToAdd));
+      toast.success("Item added to cart");
     }
   }, [dispatch, productAmt, productItem]);
 
   const handleCheckout = useCallback(() => {
-    console.log("r44445");
     if (productItem) {
       const { id, name, image, price } = productItem;
       const productToAdd = {

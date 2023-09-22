@@ -6,17 +6,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import SearchInput from "./searchBar";
+import SearchInput from "./nav/navbar/components/searchBar";
 import { ReactElement, ReactNode } from "react";
 
-interface SearchDialogueProps {
+interface DialogueProps {
   children: ReactNode;
   title: string;
   open: boolean;
   onChange: () => void;
 }
 
-const SearchDialogue: React.FC<SearchDialogueProps> = ({
+const Dialogue: React.FC<DialogueProps> = ({
   children,
   title,
   onChange,
@@ -34,4 +34,4 @@ const SearchDialogue: React.FC<SearchDialogueProps> = ({
   );
 };
 
-export default SearchDialogue;
+export default Dialogue;
