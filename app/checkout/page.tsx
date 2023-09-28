@@ -189,7 +189,13 @@ const CheckoutPage = () => {
             disabled={isLoading}
           />
           <div className="flex gap-2 mt-4">
-            <input type="checkbox" name="terms" id="terms" required />
+            <input
+              type="checkbox"
+              name="terms"
+              id="terms"
+              required
+              className="accent-green-700 hover:accent-green-600"
+            />
             <p className="text-xs ">
               I have read and agree to the terms and conditions
             </p>

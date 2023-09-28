@@ -68,10 +68,10 @@ const AgentRegistration = () => {
       .get(" https://jsonplaceholder.typicode.com/posts/1")
       .then((response) => {
         const data = response.data;
-        setValue("firstName", data?.id);
-        setValue("lastName", data?.id);
-        setValue("email", data?.id);
-        setValue("username", data?.id);
+        setValue("firstName", data?.title);
+        setValue("lastName", data?.title);
+        setValue("email", data?.title);
+        setValue("username", data?.title);
       })
       .catch((error) => {
         {
@@ -110,7 +110,7 @@ const AgentRegistration = () => {
         modifiedData
       )
       .then(() => {
-        toast.error("Successfully submitted, We will contact you shortly");
+        toast.success("Successfully submitted, We will contact you shortly");
         reset();
       })
       .catch(() => toast.error("Something went wrong"))
