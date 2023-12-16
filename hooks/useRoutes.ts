@@ -15,7 +15,6 @@ import {
 
 const useRoutes = () => {
   const pathname = usePathname();
-  console.log("what::::", pathname);
 
   const routes = useMemo(
     () => [

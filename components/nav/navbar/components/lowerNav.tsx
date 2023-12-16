@@ -35,7 +35,7 @@ const LowerNav = () => {
       },
 
       {
-        label: "Become our Farmer",
+        label: "Become our Agent",
         href: "#",
         active: false,
         triggerDialog: true,

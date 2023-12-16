@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface LowerNavItem {
   label: string;
@@ -65,6 +66,12 @@ const LowerNavItem: React.FC<LowerNavItem> = ({
         setIsLoading(false);
       });
   };
+
+  const pathname = usePathname();
+  const isActive =
+    (pathname === "/" && href === "/") ||
+    pathname === href ||
+    pathname?.startsWith(`${href}/`);
   return (
     <>
       {triggerDialog && (
@@ -142,7 +149,7 @@ const LowerNavItem: React.FC<LowerNavItem> = ({
         onClick={() => setOpen(true)}
         className={cn(
           " px-1 transition hover:text-white hover:border-redBrand hover:border-b-2 duration-300 py-1",
-          flex && "text-yellow-50 border-b-2 border-redBrand "
+          active && "text-yellow-50 border-b-2 border-redBrand "
         )}
       >
         <Link

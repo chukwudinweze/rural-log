@@ -35,6 +35,8 @@ const ProductId = ({ params }: { params: Iparams }) => {
         amount: productAmt,
         price: price,
       };
+      console.log(productToAdd);
+
       dispatch(addToCart(productToAdd));
       toast.success("Item added to cart");
     }
@@ -126,7 +128,7 @@ const ProductId = ({ params }: { params: Iparams }) => {
       </div>
       <div className="ml-0 md:ml-5 mt-3">
         <ReviewList />
-        <Rating productId={params.productId} />
+        <Rating productId={productItem.id.toLocaleString()} />
       </div>
       <ProductLists heading="Related Products" />
     </div>

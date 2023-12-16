@@ -17,7 +17,7 @@ const EmptyCart = () => {
       </div>
       <button
         onClick={() => router.push("/")}
-        className="bg-green-700 px-4 py-1 w-[30%] text-white rounded-md mt-5 "
+        className="bg-green-700 px-4 py-1 w-[30%] text-white rounded-md mt-5 mb-6"
       >
         Return to Shopping
       </button>

@@ -52,16 +52,13 @@ const CheckoutPage = () => {
       lga: "",
       products,
     },
+    // @ts-expect-error
     resolver: yupResolver(billingDetailsSchema),
   });
 
   const selectedState = watch("state");
 
   useEffect(() => {}, [watch]);
-
-  if (products.length < 1) {
-    return <p>No Product Selected</p>;
-  }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (products.length < 1) {
@@ -84,11 +81,11 @@ const CheckoutPage = () => {
 
     axios
       .post(
-        "https://1189-154-120-112-139.ngrok-free.app/api/v1/agents/create",
+        "https://e576-197-242-115-128.ngrok-free.app/api/v1/products/create",
         data
       )
       .then(() => {
-        toast.error("Successfully submitted, We will contact you shortly");
+        toast.success("Successfully submitted, We will contact you shortly");
         reset();
       })
       .catch(() => toast.error("Something went wrong"))
@@ -98,6 +95,11 @@ const CheckoutPage = () => {
 
     // dispatch(clearProductCheckout());
   };
+
+  if (products.length < 1) {
+    return <p>No Product Selected</p>;
+  }
+
   return (
     <div className="py-5">
       <h1 className="font-bold text-lg">Billing Details</h1>

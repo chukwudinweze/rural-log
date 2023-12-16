@@ -2,11 +2,10 @@
 
 import { addToCart, removeFromCart } from "@/store/cart";
 import { useAppDispatch } from "@/store/hooks";
-import { Product } from "@/store/productCheckout";
+import { Product as ProductType } from "@/store/productCheckout";
 import Image from "next/image";
-import { useCallback } from "react";
 
-const Product: React.FC<Product> = ({
+const Product: React.FC<ProductType> = ({
   amount,
   price,
   productId,
