@@ -1,7 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
-import { usePathname } from "next/navigation";
 import SidenavLinkItem from "./components/SidenavLinkItem";
 import useRoutes from "@/hooks/useRoutes";
 

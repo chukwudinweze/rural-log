@@ -19,6 +19,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import billingDetailsSchema from "@/lib/billingDetailsSchema";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import EmptyCart from "../cart/components/emptyCart";
 
 type stateType = {
   value: string;
@@ -97,7 +98,7 @@ const CheckoutPage = () => {
   };
 
   if (products.length < 1) {
-    return <p>No Product Selected</p>;
+    return <EmptyCart />;
   }
 
   return (
