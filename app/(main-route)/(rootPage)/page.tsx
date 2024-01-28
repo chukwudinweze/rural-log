@@ -3,7 +3,7 @@ import Slideshow from "./components/Slideshow";
 
 const HomePage = () => {
   return (
-    <div className="">
+    <div>
       <Slideshow />
       <ProductLists heading="Today’s Popular Picks" />
       <ProductLists heading="Trending" />

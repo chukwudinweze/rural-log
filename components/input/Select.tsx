@@ -1,13 +1,16 @@
 "use client";
 import { FieldErrors } from "react-hook-form";
-import ReactSelect from "react-select";
+import ReactSelect, { ActionMeta, SingleValue } from "react-select";
 
 interface SelectProps {
   disabled?: boolean;
   label: string;
   options: Record<string, any>[];
   value?: Record<string, any>;
-  onChange: (value: Record<string, any>) => void;
+  onChange: (
+    newValue: SingleValue<Record<string, any>>,
+    actionMeta: ActionMeta<Record<string, any>>
+  ) => void;
   errors?: FieldErrors;
   isRequired?: boolean;
 }

@@ -5,7 +5,7 @@ import { Phone, MailCheck, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className="bg-green-800 py-6">
+    <div className="bg-green-800 py-6 w-full">
       <div className="container mx-auto flex flex-col md:flex-row items-start justify-between px-4">
         {/* First Div logo*/}
         <div className="mb-4 md:mb-0  md:text-left">

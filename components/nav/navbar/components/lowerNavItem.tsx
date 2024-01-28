@@ -45,6 +45,7 @@ const LowerNavItem: React.FC<LowerNavItem> = ({
       password: "",
       password2: "",
     },
+    // @ts-expect-error
     resolver: yupResolver(validateFarmerInput),
   });
 

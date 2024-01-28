@@ -57,6 +57,7 @@ const AgentRegistration = () => {
       bvn: "",
       serviceLevelAgreement: false,
     },
+    //@ts-expect-error
     resolver: yupResolver(agentRegSchema),
   });
 

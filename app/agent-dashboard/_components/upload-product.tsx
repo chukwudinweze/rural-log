@@ -46,6 +46,7 @@ const UploadProduct = () => {
       price: 0,
       detail: "",
     },
+    // @ts-expect-error
     resolver: yupResolver(formSchema),
   });
 
