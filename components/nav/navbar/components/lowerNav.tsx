@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import React from "react";
-import LowerNavItem from "./lowerNavItem";
+// import LowerNavItem from "./lowerNavItem";
 import SocialMedia from "./socialMedia";
 
 const LowerNav = () => {
@@ -46,7 +46,7 @@ const LowerNav = () => {
   return (
     <div className="flex justify-center items-center w-full md:px-20 md:gap-60 bg-green-700 ">
       <ul className="flex items-center justify-between md:gap-8 pb-1">
-        {routes.map((route) => (
+        {/* {routes.map((route) => (
           <LowerNavItem
             key={route.label}
             label={route.label}
@@ -55,7 +55,7 @@ const LowerNav = () => {
             flex={route.flex}
             triggerDialog={route.triggerDialog}
           />
-        ))}
+        ))} */}
       </ul>
       <SocialMedia />
     </div>
