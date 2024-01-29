@@ -3,7 +3,7 @@ import { Menu, UserCircle2 } from "lucide-react";
 import Logo from "@/components/logo";
 import Cart from "./components/cart";
 import FAQ from "./components/faq";
-import LowerNav from "./components/lowerNav";
+// import LowerNav from "./components/lowerNav";
 // import SearchInput from "./components/searchBar";
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
         <Cart />
       </div>
       {/* lower navigation desktop */}
-      <LowerNav />
+      {/* <LowerNav /> */}
     </nav>
   );
 };
