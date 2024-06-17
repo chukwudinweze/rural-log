@@ -3,38 +3,39 @@ import React from "react";
 const AboutPage = () => {
   return (
     <div>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, dicta
-      aspernatur? Pariatur non sed totam neque amet asperiores accusantium.
-      Illo, deleniti nobis saepe optio a nam aliquam ab nihil aspernatur
-      quibusdam animi dolorem architecto autem repellat ducimus soluta quae
-      quisquam maiores! Neque quisquam magnam nostrum vitae illo rem nihil atque
-      laborum iure sequi! Vitae, beatae? Esse corrupti consequatur dolorem,
-      autem exercitationem quia commodi eveniet necessitatibus tempore libero
-      architecto non nihil sint laudantium. Ducimus suscipit maiores ipsa et!
-      Commodi animi modi deserunt quis distinctio! Minima numquam, nisi culpa
-      temporibus qui quas molestiae odio, omnis quisquam accusantium eius
-      voluptatum autem obcaecati voluptas quae, laboriosam repellat provident
-      dignissimos voluptatem? Et commodi corporis consequatur accusantium
-      quidem, nesciunt neque numquam deleniti est assumenda adipisci iste ipsum
-      ipsa possimus dolorum eveniet soluta nam iure id nostrum esse facilis. Sed
-      natus esse perspiciatis obcaecati, fuga beatae, iste numquam, debitis at
-      magni cupiditate iure consequatur. Quis doloremque ipsum assumenda numquam
-      excepturi veniam eum facere iure corporis, rerum laboriosam sint quod, eos
-      nesciunt nihil corrupti, sequi beatae magni consequuntur reiciendis.
-      Blanditiis amet, ex fugiat laborum tenetur aut esse laudantium quis eius
-      explicabo ipsam dolores. Laborum facilis, iure culpa quibusdam a obcaecati
-      eligendi enim! Magnam ipsum est eveniet vel harum amet numquam dicta
-      quaerat voluptas mollitia eaque corrupti omnis sunt recusandae voluptatem
-      provident soluta iure ab distinctio, veritatis laboriosam voluptatibus
-      reiciendis beatae. Architecto delectus dignissimos ex tempore? Voluptates
-      cupiditate architecto quam vitae quas provident. Et ipsum quaerat
-      eligendi? Error eligendi dolor totam ullam velit consequatur aperiam
-      sapiente tempora ratione cupiditate deserunt ipsam nulla a quo officiis
-      nostrum tempore soluta nobis omnis impedit cum in, consectetur nesciunt
-      quae. Voluptate quo nulla necessitatibus exercitationem dolor voluptates
-      nam tenetur expedita eligendi at accusantium facere est ipsum aspernatur
-      rem, iusto labore voluptatem quisquam incidunt magni voluptatibus deleniti
-      qui. Quibusdam rerum facilis earum perspiciatis non!
+      <h1 className="font-bold text-2xl mt-6 mb-2">About Ruralog</h1>
+      Welcome to Ruralog, your trusted marketplace for buying and selling
+      agricultural inputs. Our platform is designed to connect farmers with
+      reliable agro-input suppliers through our network of dedicated agents,
+      ensuring a seamless and personalized experience.
+      <br />
+      <br /> At Ruralog, we recognize the challenges farmers face in accessing
+      high-quality inputs like seeds, fertilizers, pesticides, and machinery.
+      Our mission is to simplify this process by bridging the gap between buyers
+      and suppliers. With the help of our skilled agents, we provide tailored
+      support to meet your specific agricultural needs, ensuring you get the
+      right products at competitive prices.
+      <br />
+      <br /> Our platform is more than just a marketplace; it`&apos;s a
+      community built on trust and transparency. Each of our agents is carefully
+      selected and trained to offer expert guidance, making your purchasing
+      decisions easier and more informed. By leveraging local knowledge and
+      relationships, our agents facilitate smooth transactions and foster
+      lasting connections between farmers and suppliers.
+      <br />
+      <br /> Ruralog is committed to enhancing the agricultural supply chain,
+      promoting efficiency, and boosting productivity. Our platform features a
+      wide range of products from reputable suppliers, all vetted to meet our
+      stringent quality standards. Safety and reliability are at the core of our
+      values. Additionally, our secure payment system and customer support team
+      are always ready to assist, providing you with a hassle-free shopping
+      experience.
+      <br />
+      <br /> Join the Ruralog community today and discover how our innovative
+      approach can transform your farming operations. Let us help you cultivate
+      success by providing the tools and resources you need to thrive in the
+      agricultural industry. Together, we can nurture growth and drive
+      sustainable agricultural development.
     </div>
   );
 };
