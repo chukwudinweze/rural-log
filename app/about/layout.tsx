@@ -1,6 +1,6 @@
 import Navbar from "@/components/nav/navbar/navbar";
 
-export default function RootLayout({
+export default function AboutLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <section>
       <Navbar />
-      <div> {children}</div>
+      <div className="p-2 md:p-20"> {children}</div>
     </section>
   );
 }

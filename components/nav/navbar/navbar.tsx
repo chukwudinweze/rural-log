@@ -5,17 +5,18 @@ import Cart from "./components/cart";
 import FAQ from "./components/faq";
 import LowerNav from "./components/lowerNav";
 import SearchInput from "./components/SearchInput";
+import { MobileNav } from "./components/mobile-menu";
 
 const Navbar = () => {
   return (
     <nav className="pt-8">
       {/* top navigation */}
       <div className="flex justify-between items-center gap-1 md:gap-3 pb-4 mx-5 md:mx-10 ">
-        <Menu size={25} className="md:hidden" />
+        <MobileNav />
         <Logo />
         <SearchInput />
         <FAQ />
-        <UserCircle2 size={25} />
+        {/* <UserCircle2 size={25} /> */}
         <Cart />
       </div>
       {/* lower navigation desktop */}

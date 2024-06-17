@@ -18,11 +18,6 @@ const LowerNav = () => {
         flex: "flex-1",
       },
       {
-        label: "Products",
-        href: "/products",
-        active: pathname === "/products",
-      },
-      {
         label: "About",
         href: "/about",
         active: pathname === "/about",

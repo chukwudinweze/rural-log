@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const FAQ = () => {
   return (
-    <Link href="#" className="font-bold hidden md:block">
+    <Link href="/faq" className="font-bold hidden md:block">
       FAQ
     </Link>
   );

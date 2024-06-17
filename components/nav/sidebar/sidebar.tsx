@@ -6,7 +6,7 @@ import useRoutes from "@/hooks/useRoutes";
 const SideBar = () => {
   const routes = useRoutes();
   return (
-    <aside className="hidden md:block h-full bg-white min-w-[240px] pl-1 pr-4 py-4">
+    <aside className="h-full bg-white min-w-[240px] pl-1 pr-4 py-4 pb-6">
       <ul className="flex flex-col gap-4 h-full">
         {routes.map((route) => (
           <SidenavLinkItem
