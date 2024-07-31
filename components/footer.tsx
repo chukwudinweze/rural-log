@@ -30,16 +30,14 @@ const Footer = () => {
               <Link href="/about">About</Link>
             </li>
             <li className="mt-1 hover:text-white">
-              <Link href="/farmers">Our Farmers</Link>
+              <Link href="/our-farmers">Our Farmers</Link>
             </li>
-            <li className="mt-1 hover:text-white">
-              <Link href="/projects">New Project</Link>
-            </li>
+
             <li className="mt-1 hover:text-white">
               <Link href="/services">Services</Link>
             </li>
             <li className="mt-1 hover:text-white">
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact-us">Contact</Link>
             </li>
           </ul>
         </div>
@@ -56,12 +54,12 @@ const Footer = () => {
             </li>
             <li className="mt-1 flex items-center hover:text-white">
               <MailCheck size={16} className="mr-2" />
-              needhelp@rurallog.com
+              rurallog1@gmail.com
             </li>
-            <li className="mt-1 flex items-center hover:text-white">
+            {/* <li className="mt-1 flex items-center hover:text-white">
               <MapPin size={16} className="mr-2" />
               80 Idejo Victoria Island, Lagos
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
