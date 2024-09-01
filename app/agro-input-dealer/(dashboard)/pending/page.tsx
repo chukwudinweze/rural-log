@@ -1,4 +1,4 @@
-import TxnList from "../(dashboard)/transaction-list";
+import TxnList from "../transaction-list";
 
 const Page = () => {
   return (
