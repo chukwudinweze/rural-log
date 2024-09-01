@@ -1,7 +1,7 @@
 "use client";
 
 import { FileStack, Layers, ArrowUpNarrowWide } from "lucide-react";
-import RecordCard from "../agent-dashboard/_components/record-card";
+import RecordCard from "../../agent-dashboard/_components/record-card";
 
 const VendorDashboard = () => {
   return (
