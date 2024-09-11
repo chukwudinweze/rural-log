@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -10,6 +9,23 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Select from "react-select";
+
+// Mock Data for States and LGAs
+const statesAndLGAs = {
+  Lagos: ["Ikeja", "Surulere", "Yaba", "Epe"],
+  Abuja: ["Gwagwalada", "Kuje", "Abaji", "Bwari"],
+  Kaduna: ["Chikun", "Igabi", "Jaba", "Zaria"],
+  Kano: ["Dala", "Fagge", "Gwale", "Tarauni"],
+};
+
+// Mock Data for Languages
+const languages = [
+  { value: "English", label: "English" },
+  { value: "Hausa", label: "Hausa" },
+  { value: "Yoruba", label: "Yoruba" },
+  { value: "Igbo", label: "Igbo" },
+];
 
 const formSchema = yup.object().shape({
   firstName: yup.string().required("Required").min(2, "Invalid Firstname"),
@@ -55,17 +71,17 @@ const formSchema = yup.object().shape({
 
 const AgroInputDealerSignupInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [selectedState, setSelectedState] = useState("");
+  const [lgOptions, setLgOptions] = useState<string[]>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
     register,
-    getValues,
     reset,
     watch,
-    setValue,
   } = useForm<FieldValues>({
     defaultValues: {
       firstName: "",
@@ -108,7 +124,15 @@ const AgroInputDealerSignupInfo = () => {
       });
   };
 
-  const inputType = watch("inputType");
+  // Watch the selected state and update LGAs
+  useEffect(() => {
+    if (selectedState) {
+      //@ts-expect-error
+      setLgOptions(statesAndLGAs[selectedState] || []);
+    } else {
+      setLgOptions([]);
+    }
+  }, [selectedState]);
 
   return (
     <div className="bg-white p-10 mx-auto mt-10 max-w-4xl border rounded-lg shadow-md">
@@ -146,20 +170,63 @@ const AgroInputDealerSignupInfo = () => {
             errors={errors}
             required
           />
-          <Input
-            label="State"
-            id="state"
-            register={register}
-            errors={errors}
-            required
-          />
-          <Input
-            label="LG"
-            id="lg"
-            register={register}
-            errors={errors}
-            required
-          />
+
+          {/* State Dropdown */}
+          <div>
+            <label
+              htmlFor="state"
+              className="text-green-700 block text-sm font-medium"
+            >
+              State
+            </label>
+            <select
+              id="state"
+              {...register("state")}
+              className="form-input block w-full rounded-md border-0 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-3"
+              onChange={(e) => setSelectedState(e.target.value)}
+            >
+              <option value="">Select State</option>
+              {Object.keys(statesAndLGAs).map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+            {errors.state && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.state?.message?.toString()}
+              </p>
+            )}
+          </div>
+
+          {/* LGA Dropdown */}
+          <div>
+            <label
+              htmlFor="lg"
+              className="text-green-700 block text-sm font-medium"
+            >
+              Local Government (LGA)
+            </label>
+            <select
+              id="lg"
+              {...register("lg")}
+              className="form-input block w-full rounded-md border-0 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-3"
+              disabled={!selectedState}
+            >
+              <option value="">Select LGA</option>
+              {lgOptions.map((lg) => (
+                <option key={lg} value={lg}>
+                  {lg}
+                </option>
+              ))}
+            </select>
+            {errors.lg && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.lg?.message?.toString()}
+              </p>
+            )}
+          </div>
+
           <Input
             label="Age"
             id="age"
@@ -167,13 +234,37 @@ const AgroInputDealerSignupInfo = () => {
             errors={errors}
             required
           />
-          <Input
-            label="Language(s)"
-            id="languages"
-            register={register}
-            errors={errors}
-            required
-          />
+
+          {/* Multi-select for Languages */}
+          <div>
+            <label
+              htmlFor="languages"
+              className="text-green-700 block text-sm font-medium"
+            >
+              Language(s)
+            </label>
+            <Select
+              isMulti
+              options={languages}
+              value={languages.filter((lang) =>
+                //@ts-expect-error
+                selectedLanguages.includes(lang.value)
+              )}
+              onChange={(selected) =>
+                //@ts-expect-error
+                setSelectedLanguages(selected.map((lang) => lang.value))
+              }
+              className="basic-multi-select"
+              classNamePrefix="select"
+              name="languages"
+            />
+            {errors.languages && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.languages?.message?.toString()}
+              </p>
+            )}
+          </div>
+
           <Input
             label="Home Address"
             id="homeAddress"
@@ -217,50 +308,104 @@ const AgroInputDealerSignupInfo = () => {
             required
           />
           <Input
-            label="Facebook Profile"
+            label="Facebook Profile (optional)"
             id="facebookProfile"
             register={register}
             errors={errors}
             required
           />
-          <Input
-            label="What type of input do you supply?"
-            id="inputType"
-            register={register}
-            errors={errors}
-            required
-          />
-          {inputType === "Fertilizer" && (
-            <Input
-              label="If Fertilizer, what type?"
+
+          {/* Input Type Dropdown */}
+          <div>
+            <label
+              htmlFor="inputType"
+              className="text-green-700 block text-sm font-medium"
+            >
+              Input Type
+            </label>
+            <select
+              id="inputType"
+              {...register("inputType")}
+              className="form-input block w-full rounded-md border-0 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-3"
+            >
+              <option value="">Select Input Type</option>
+              <option value="Fertilizer">Fertilizer</option>
+              <option value="Seeds">Seeds</option>
+            </select>
+            {errors.inputType && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.inputType?.message?.toString()}
+              </p>
+            )}
+          </div>
+
+          {/* Fertilizer Type Dropdown */}
+          <div>
+            <label
+              htmlFor="fertilizerType"
+              className="text-green-700 block text-sm font-medium"
+            >
+              Fertilizer Type
+            </label>
+            <select
               id="fertilizerType"
-              register={register}
-              errors={errors}
-              required
-            />
-          )}
-          {inputType === "Seeds" && (
-            <Input
-              label="If Seed, what type?"
+              {...register("fertilizerType")}
+              className="form-input block w-full rounded-md border-0 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-3"
+            >
+              <option value="">Select Fertilizer Type</option>
+              <option value="NPK 20-10-10">NPK 20-10-10</option>
+              <option value="NPK 15-15-15">NPK 15-15-15</option>
+            </select>
+            {errors.fertilizerType && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.fertilizerType?.message?.toString()}
+              </p>
+            )}
+          </div>
+
+          {/* Seed Type Dropdown */}
+          <div>
+            <label
+              htmlFor="seedType"
+              className="text-green-700 block text-sm font-medium"
+            >
+              Seed Type
+            </label>
+            <select
               id="seedType"
-              register={register}
-              errors={errors}
-              required
-            />
-          )}
+              {...register("seedType")}
+              className="form-input block w-full rounded-md border-0 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 pl-3"
+            >
+              <option value="">Select Seed Type</option>
+              <option value="Rice">Rice</option>
+              <option value="Maize">Maize</option>
+            </select>
+            {errors.seedType && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.seedType?.message?.toString()}
+              </p>
+            )}
+          </div>
+
           <Input
-            label="BVN No"
+            label="BVN"
             id="bvn"
             register={register}
             errors={errors}
             required
           />
-          <div className="mt-4">
-            <label className="block text-sm font-medium leading-6 text-green-700">
-              A commission fee of 5% will be charged per transaction for service
-              delivered. Do you agree?
+
+          <div className="sm:col-span-2">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                {...register("agreement")}
+                className="form-checkbox"
+              />
+              <span className="ml-2 text-gray-700">
+                I agree to the commission fee
+              </span>
             </label>
-            <input type="checkbox" id="agreement" {...register("agreement")} />
             {errors.agreement && (
               <p className="text-red-500 text-xs mt-1">
                 {errors.agreement?.message?.toString()}
@@ -268,13 +413,21 @@ const AgroInputDealerSignupInfo = () => {
             )}
           </div>
         </div>
-        <div className="mt-6">
+
+        <div className="flex justify-center mt-5">
           <Button
             type="submit"
-            className="w-full py-3 bg-green-700 text-white hover:bg-green-800 mb-10 mt-5"
+            disabled={isLoading}
+            className="relative flex items-center justify-center w-full max-w-sm py-2 text-white bg-green-700 rounded-lg hover:bg-green-600"
           >
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Submit
+            {isLoading ? (
+              <>
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              "Submit"
+            )}
           </Button>
         </div>
       </form>
