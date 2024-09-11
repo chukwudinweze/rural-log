@@ -10,14 +10,7 @@ import { Loader2 } from "lucide-react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Select from "react-select";
-
-// Mock Data for States and LGAs
-const statesAndLGAs = {
-  Lagos: ["Ikeja", "Surulere", "Yaba", "Epe"],
-  Abuja: ["Gwagwalada", "Kuje", "Abaji", "Bwari"],
-  Kaduna: ["Chikun", "Igabi", "Jaba", "Zaria"],
-  Kano: ["Dala", "Fagge", "Gwale", "Tarauni"],
-};
+import { statesAndLGAs } from "./states-and-lg";
 
 // Mock Data for Languages
 const languages = [
