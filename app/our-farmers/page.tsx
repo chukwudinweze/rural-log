@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const page = () => {
@@ -33,6 +34,7 @@ const page = () => {
         ensures that all dealers meet rigorous quality standards, providing
         farmers with reliable and effective solutions. Kindly click the link
         below to be an agro-input dealer.
+        <Link href="/agro-input-dealer/signup">Sign up</Link>
       </p>
       <h2 className="font-bold text-2xl mt-6 mb-2">Farmers:</h2>
       <p>

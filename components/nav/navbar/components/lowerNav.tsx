@@ -35,6 +35,11 @@ const LowerNav = () => {
         active: false,
         triggerDialog: true,
       },
+      {
+        label: "Agro Input Dealer",
+        href: "/agro-input-dealer/signup",
+        active: false,
+      },
     ],
     [pathname]
   );
